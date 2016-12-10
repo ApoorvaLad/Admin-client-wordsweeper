@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.model.Game;
 import com.model.Player;
-
-
-
+/**
+ * Test Case for Player
+ * @author Rishitha
+ *
+ */
 public class PlayerTest {
-	
+	/**Test to verify the name of player*/
 	@Test
 	public void testSetName() {
 		Player p=new Player();
@@ -25,7 +26,7 @@ public class PlayerTest {
 	    assertEquals("Abc",result);
 	}
 	
-	
+	/**Test to verify the score*/
 	@Test
 	public void testSetScore() {
 	    Player p=new Player();
