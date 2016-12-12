@@ -14,6 +14,11 @@ import com.admin.scorpio.model.Model;
 import com.admin.scorpio.view.Application;
 
 
+/**
+ * Class to test the ConnectResponseController
+ * @author Apoorva
+ *
+ */
 public class TestConnectResponseController {
 	Model model = new Model();
 	Application client = new Application();

@@ -33,6 +33,11 @@ public class BoardPanel extends JPanel {
 
 	}
 
+	/**
+	 * Creates the Outline of the board panel
+	 * @param row
+	 * @param col
+	 */
 	private void initialize(int row, int col) {
 		this.setLayout(new GridLayout(0, 1));
 
@@ -52,33 +57,53 @@ public class BoardPanel extends JPanel {
 		add(detailsScrollPane);
 	}
 
+	/**
+	 * Method to add the elements in the board panel
+	 * @param row
+	 * @param col
+	 */
 	public void addComponents(int row, int col) {
 		GridLayout gridLayout = new GridLayout(row, col);
-
-		/*
-		 * Dimension dimension = new Dimension(100, 100);
-		 * jPanel.setSize(dimension);
-		 */
 		baordPanel.setLayout(gridLayout);
 
 	}
 
+	/**
+	 * Returns the internal panel
+	 * @return
+	 */
 	public JPanel getPanel() {
 		return baordPanel;
 	}
 
+	/**
+	 * returns the label 
+	 * @return
+	 */
 	public JLabel getNameLabel() {
 		return name;
 	}
 
+	/**
+	 * returns the gamedetails
+	 * @return
+	 */
 	public ArrayList<JLabel> getDetails() {
 		return details;
 	}
 
+	/**
+	 * returns the Game Detail Panel
+	 * @return
+	 */
 	public JPanel getDetailsPanel() {
 		return detailsPanel;
 	}
 
+	/**
+	 * returns the model for the list
+	 * @return
+	 */
 	public DefaultListModel getModel() {
 		return model;
 	}

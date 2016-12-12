@@ -20,6 +20,10 @@ public class GameController implements IAdminController {
 
 	}
 
+	/**
+	 * This method sends a request to the server to display the game board
+	 * @param gameId
+	 */
 	public void process(String gameId) {
 		if (application.getAdminPanel().getGamePanel().getBoardPanel().getPanel().getComponents().length != 0) {
 			application.getAdminPanel().getGamePanel().getBoardPanel().getPanel().removeAll();

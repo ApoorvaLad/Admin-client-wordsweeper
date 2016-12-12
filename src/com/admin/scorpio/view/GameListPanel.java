@@ -27,6 +27,9 @@ public class GameListPanel extends JPanel {
 		initilise();
 	}
 
+	/**
+	 * Creates an outline for the Game List Panel
+	 */
 	private void initilise() {
 		
 		setLayout(new BorderLayout());
@@ -36,7 +39,6 @@ public class GameListPanel extends JPanel {
 		
 		JScrollPane jScrollPane = new JScrollPane(list);
 		
-		// jScrollPane.setBounds(new Rectangle(7, 50, 100, 435));
 		JButton showGame = new JButton("Show Game");
 		showGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -38,6 +38,9 @@ public class TestGameController {
 		client.setServerAccess(mockServer);
 	}
 
+	/**
+	 * This is to test the ShowGameResponseController
+	 */
 	@Test
 	public void testShowGameResponseController() {
 		Game game = new Game();

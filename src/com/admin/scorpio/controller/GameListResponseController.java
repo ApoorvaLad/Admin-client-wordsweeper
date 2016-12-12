@@ -28,6 +28,9 @@ public class GameListResponseController extends ControllerChain {
 		model = m;
 	}
 
+	/**
+	 * This method handles the response for listing the games on the GameListPanel.
+	 */
 	public boolean process(Message response) {
 		String type = response.contents.getFirstChild().getLocalName();
 		if (!type.equals("listGamesResponse")) {
@@ -46,7 +49,6 @@ public class GameListResponseController extends ControllerChain {
 		Application.getInstance().gameIndexMapping.clear();
 		model.clearGames();
 		application.getAdminPanel().getGameListPanel().getModel().removeAllElements();
-
 
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);

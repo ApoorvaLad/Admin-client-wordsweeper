@@ -29,6 +29,10 @@ public class TestShowGameResponseController {
 		client.setServerAccess(mockServer);
 	}
 
+	/**
+	 * this is to test the ShowGameStateResponseController
+	 */
+
 	@Test
 	public void testShowGameStateResponseController() {
 
@@ -59,9 +63,6 @@ public class TestShowGameResponseController {
 		assertEquals(model.getGames().get(0).getGameID(), gameId);
 		assertEquals(model.getGames().get(0).getNoOfPlayers(), 1);
 		assertEquals(model.getGames().get(0).getScore(), score1);
-		// assertTrue(reqs.size() == 1);
-
-		// . assertTrue(reqs.size() == 1);
 
 	}
 }

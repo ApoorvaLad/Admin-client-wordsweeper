@@ -41,19 +41,18 @@ public class TestGameListController {
 	 */
 	@Test
 	public void gameListController() {
-		
+
 		Game game = new Game();
 		game.setGameID("newGame");
 		GameListController controller = new GameListController(client);
 		controller.process();
-		
+
 		ArrayList<Message> reqs = mockServer.getAndClearMessages();
 		assertTrue(reqs.size() == 1);
 		Message r = reqs.get(0);
 		assertEquals("listGamesRequest", r.contents.getFirstChild().getLocalName());
 		assertTrue(reqs.size() == 1);
-		
-		
+
 	}
-	
+
 }

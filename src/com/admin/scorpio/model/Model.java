@@ -2,6 +2,12 @@ package com.admin.scorpio.model;
 
 import java.util.ArrayList;
 
+/**
+ * Entity for Model
+ * 
+ * @author Apoorva
+ *
+ */
 public class Model {
 	ArrayList<Game>games = new ArrayList<>();
 	

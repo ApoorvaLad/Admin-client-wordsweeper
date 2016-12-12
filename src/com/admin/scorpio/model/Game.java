@@ -16,7 +16,6 @@ public class Game {
 	private int noOfPlayers;
 	private int score;
 	private String playerName;
-	//private ArrayList<Player> players;
 
 	public void setGameDetails(String gameName, String gameId) {
 		gameDetails.put(gameName, gameId);

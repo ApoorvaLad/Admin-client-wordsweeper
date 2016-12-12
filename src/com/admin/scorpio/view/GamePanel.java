@@ -14,7 +14,7 @@ import com.admin.scorpio.controller.GameController;
 
 /**
  * 
- * 
+ * Game Panel - Displays the game board and game details
  * @author Apoorva
  *
  */
@@ -38,6 +38,9 @@ public class GamePanel extends JPanel {
 		initialize();
 	}
 
+	/**
+	 * Creates an outline for the Game Panel
+	 */
 	void initialize() {
 		//setLayout(new GridLayout(0, 1));
 		JButton updateButton = new JButton("Update Game");
@@ -56,9 +59,17 @@ public class GamePanel extends JPanel {
 	
 	}
 
+	/**
+	 * returns the internal board panel
+	 * @return
+	 */
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
 	}
+	
+	/**
+	 * Reset the board panel
+	 */
 	public void resetBoardPanel(){
 		this.boardPanel.getModel().removeAllElements();
 	}

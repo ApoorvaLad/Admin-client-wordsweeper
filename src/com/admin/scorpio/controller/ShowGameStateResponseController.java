@@ -16,6 +16,7 @@ import com.admin.scorpio.view.GamePanel;
 
 /**
  * 
+ * This class handles the showGameStateRequest
  * 
  * @author Apoorva
  *
@@ -30,6 +31,10 @@ public class ShowGameStateResponseController extends ControllerChain {
 		this.model = model;
 	}
 
+	/**
+	 * This methd handles the showGameRequestState and displays the board on the
+	 * GamePanel
+	 */
 	@Override
 	public boolean process(Message response) {
 
@@ -38,10 +43,8 @@ public class ShowGameStateResponseController extends ControllerChain {
 			return next.process(response);
 		}
 
-
 		GamePanel gamePanel = app.getAdminPanel().getGamePanel();
 		gamePanel.resetBoardPanel();
-
 
 		Node listResponse = response.contents.getFirstChild();
 		NodeList list = listResponse.getChildNodes();
@@ -52,17 +55,15 @@ public class ShowGameStateResponseController extends ControllerChain {
 
 		JPanel[][] tiles = new JPanel[columncount][rowCount];
 		// Initialize all buttons
-		for (int col = 0 ; col < columncount; col++) {
+		for (int col = 0; col < columncount; col++) {
 			for (int row = 0; row < rowCount; row++) {
 				tiles[col][row] = new JPanel();
 				tiles[col][row].setBackground(Color.WHITE);
-				//tiles[col][row].setBorder(BorderFactory.createLineBorder(Color.black));
-				tiles[col][row].setPreferredSize( new Dimension(50, 20) );
+				// tiles[col][row].setBorder(BorderFactory.createLineBorder(Color.black));
+				tiles[col][row].setPreferredSize(new Dimension(50, 20));
 				gamePanel.getBoardPanel().getPanel().add(tiles[col][row]);
 			}
 		}
-
-
 
 		// Populate all characters on the board
 		String content = listResponse.getAttributes().getNamedItem("contents").getNodeValue();
@@ -99,11 +100,10 @@ public class ShowGameStateResponseController extends ControllerChain {
 		gamePanel.repaint();
 		gamePanel.setVisible(true);
 
-
 		return true;
 	}
 
-	private Color averageColors(Color c1, Color c2){
+	private Color averageColors(Color c1, Color c2) {
 		int r1 = c1.getRed();
 		int g1 = c1.getGreen();
 		int b1 = c1.getBlue();

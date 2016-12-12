@@ -28,6 +28,9 @@ public class AdminPanel extends JPanel {
 		initialise();
 	}
 
+	/**
+	 * Initialises the Main panel by calling the intermediate panels
+	 */
 	void initialise() {
 
 		setLayout(null);
@@ -47,6 +50,10 @@ public class AdminPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Creates the GameListPanel
+	 * @return
+	 */
 	public GameListPanel getGameListPanel() {
 		if (gameListPanel == null) {
 			gameListPanel = new GameListPanel();
@@ -56,13 +63,15 @@ public class AdminPanel extends JPanel {
 		return gameListPanel;
 	}
 
+	/*
+	 * Creates the Game Panel
+	 */
 	public GamePanel getGamePanel() {
 		if (gamePanel == null) {
 			gamePanel = new GamePanel(gameListPanel.list);
 			gamePanel.setVisible(false);
 			gamePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 			gamePanel.setBounds(new Rectangle(150, 0, 633, 510));
-			//gamePanel.setBounds(new Rectangle(50, 0, 650, 700));
 		}
 		return gamePanel;
 	}

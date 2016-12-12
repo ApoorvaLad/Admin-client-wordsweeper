@@ -5,7 +5,11 @@ import java.io.FileInputStream;
 
 import com.admin.xml.Message;
 
-
+/**
+ * 
+ * @author Apoorva
+ *
+ */
 public class XMLUtil {
 	/**
      * Build a Message object based on the given data
