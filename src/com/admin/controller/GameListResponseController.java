@@ -45,6 +45,9 @@ public class GameListResponseController extends ControllerChain {
 		}
 		// Reset
 		Application.getInstance().gameIndexMapping.clear();
+		model.clearGames();
+		application.getAdminPanel().getGameListPanel().getModel().removeAllElements();
+
 
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);

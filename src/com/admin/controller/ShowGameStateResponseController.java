@@ -90,6 +90,13 @@ public class ShowGameStateResponseController extends ControllerChain {
 
 		}
 
+		// Insert Bonus
+		String position = listResponse.getAttributes().getNamedItem("bonus").getNodeValue();
+		List<String> bonus = Arrays.asList(position.split("\\s*,\\s*"));
+		int bonus_y = Integer.parseInt(bonus.get(0)) - 1;
+		int bonus_x = Integer.parseInt(bonus.get(1)) - 1;
+		tiles[bonus_x][bonus_y].setBackground(Color.YELLOW);
+
 		gamePanel.revalidate();
 		gamePanel.repaint();
 		gamePanel.setVisible(true);

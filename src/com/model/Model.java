@@ -9,6 +9,7 @@ public class Model {
 	public void addGame(Game game) {
 		games.add(game);
 	}
+	public void clearGames() { games.clear();}
 	
 	public ArrayList<Game> getGames() {
 		return games;
