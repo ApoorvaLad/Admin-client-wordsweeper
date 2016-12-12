@@ -1,12 +1,11 @@
 package com.admin.controller;
 
-import java.awt.Button;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -40,109 +39,96 @@ public class ShowGameStateResponseController extends ControllerChain {
 		if (!type.equals("boardResponse")) {
 			return next.process(response);
 		}
-		/*
-		 * Node listResponse = response.contents.getFirstChild(); Game game =
-		 * new Game(); ArrayList<Player> players = null; NodeList list =
-		 * listResponse.getChildNodes(); for (int i = 0; i < list.getLength();
-		 * i++) { Player player=new Player(); Node n = list.item(i); String name
-		 * = n.getAttributes().getNamedItem("name").getNodeValue();
-		 * player.setName(name); String score =
-		 * n.getAttributes().getNamedItem("score").getNodeValue();
-		 * player.setScore(score); players.add(player); game.setPlayer(players);
-		 * 
-		 * app.getAdminPanel().getGamePanel().getModel().addElement("Name: " +
-		 * player.getname());
-		 * app.getAdminPanel().getGamePanel().getModel().addElement("Score: " +
-		 * player.getScore()); }
-		 */
+
 
 		GamePanel gamePanel = app.getAdminPanel().getGamePanel();
-		/*
-		 * gamePanel.getBoardPanel().removeAll();
-		 * gamePanel.getBoardPanel().updateUI();
-		 */
+		gamePanel.resetBoardPanel();
+
+
 		Node listResponse = response.contents.getFirstChild();
 		NodeList list = listResponse.getChildNodes();
 		int columncount = Integer.parseInt(listResponse.getAttributes().getNamedItem("size").getNodeValue());
-		int rowCount = Integer.parseInt(listResponse.getAttributes().getNamedItem("size").getNodeValue());
-		listResponse.getNodeValue();
+		int rowCount = columncount;
 
-		int listIndex = 0;
+		gamePanel.getBoardPanel().addComponents(columncount, rowCount);
 
-		gamePanel.getBoardPanel().addComponents(rowCount, columncount);
-		// app.getAdminPanel().getGamePanel().getBoardPanel().addComponents(rowCount,
-		// columncount);
-
-		JButton[][] buttons = new JButton[rowCount][columncount];
-		Button button = new Button("");
-		/*
-		 * for (int i = 0; i < list.getLength(); i++) { listIndex = 0;
-		 */
-		for (int row = 0; row < rowCount; row++) {
-			for (int col = 0; col < columncount; col++) {
-				buttons[row][col] = new JButton("");
-
-				gamePanel.getBoardPanel().getPanel().add(buttons[row][col]);
+		JPanel[][] tiles = new JPanel[columncount][rowCount];
+		// Initialize all buttons
+		for (int col = 0 ; col < columncount; col++) {
+			for (int row = 0; row < rowCount; row++) {
+				tiles[col][row] = new JPanel();
+				tiles[col][row].setBackground(Color.WHITE);
+				//tiles[col][row].setBorder(BorderFactory.createLineBorder(Color.black));
+				tiles[col][row].setPreferredSize( new Dimension(50, 50) );
+				gamePanel.getBoardPanel().getPanel().add(tiles[col][row]);
 			}
-
 		}
-		Game game = new Game();
+
+
+
+		// Populate all characters on the board
+		String content = listResponse.getAttributes().getNamedItem("contents").getNodeValue();
+		int pos_x = 0;
+		int pos_y = 0;
+		int listCounter = 0;
+		List<String> items = Arrays.asList(content.split("\\s*,\\s*"));
+		for (int col = pos_x; col < columncount; col++) {
+			for (int row = pos_y; row < rowCount; row++) {
+				tiles[col][row].add(new JLabel(items.get(listCounter++)));
+			}
+		}
+
+		// Shade cells for each player board
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
 			JLabel e = new JLabel("Player: " + n.getAttributes().getNamedItem("name").getNodeValue() + "      Score: "
 					+ n.getAttributes().getNamedItem("score").getNodeValue());
 
-			// app.getAdminPanel().getGamePanel().getBoardPanel().getDetails().add(e);
-			// app.getAdminPanel().getGamePanel().
-			
 			gamePanel.getBoardPanel().getModel().addElement(e.getText());
-			/*
-			 * app.getAdminPanel().getGamePanel().getBoardPanel().getNameLabel()
-			 * .setText(n.getAttributes().getNamedItem("name").getNodeValue());
-			 */
-			createPlayerBoard(n, buttons);
+
+			createPlayerBoard(n, tiles);
 
 		}
 
-		/*
-		 * for (int pos_row = pos_y; pos_row < 4; pos_row++) { for (int pos_col
-		 * = pos_x; pos_col < 4; pos_col++) {
-		 * button.setLabel(items.get(listIndex++)); } }
-		 */
-		// Button button = new Button(Integer.toString());
-		/*
-		 * app.getAdminPanel().getGamePanel().getBoardPanel().
-		 * getPanel().add(button);
-		 * app.getAdminPanel().getGamePanel().setBounds(new Rectangle(100, 50,
-		 * 650, 700)); app.getAdminPanel().getGamePanel().setVisible(true);
-		 */
-
-		// */
-		// String gameID =
-		// n.getAttributes().getNamedItem("gameId").getNodeValue();
-
-		// }
-		// boardPanel.setBounds(new Rectangle(100, 50, 650, 700));
-		// app.getAdminPanel().getGamePanel().setBounds(new Rectangle(180, 50,
-		// 500, 300));
-		// app.getAdminPanel().
+		gamePanel.revalidate();
+		gamePanel.repaint();
 		gamePanel.setVisible(true);
+
 
 		return true;
 	}
 
-	private void createPlayerBoard(Node n, JButton[][] buttons) {
+	private Color averageColors(Color c1, Color c2){
+		int r1 = c1.getRed();
+		int g1 = c1.getGreen();
+		int b1 = c1.getBlue();
+
+		int r2 = c2.getRed();
+		int g2 = c2.getGreen();
+		int b2 = c2.getBlue();
+
+		// Mix the colors by averaging
+		int mr = (int) Math.floor((r1 + r2) / 2);
+		int mg = (int) Math.floor((g1 + g2) / 2);
+		int mb = (int) Math.floor((b1 + b2) / 2);
+
+		return new Color(mr, mg, mb);
+	}
+
+	private void createPlayerBoard(Node n, JPanel[][] tiles) {
 		// Node n = list.item(0);
 		int listCounter = 0;
 		String position = n.getAttributes().getNamedItem("position").getNodeValue();
 		List<String> positions = Arrays.asList(position.split("\\s*,\\s*"));
 		String content = n.getAttributes().getNamedItem("board").getNodeValue();
-		int pos_x = Integer.parseInt(positions.get(0));
-		int pos_y = Integer.parseInt(positions.get(1));
+		int pos_y = Integer.parseInt(positions.get(0)) - 1;
+		int pos_x = Integer.parseInt(positions.get(1)) - 1;
 		List<String> items = Arrays.asList(content.split("\\s*,\\s*"));
-		for (int row = pos_x; row <= (pos_x + 3); row++) {
-			for (int col = pos_y; col <= (pos_y + 3); col++) {
-				buttons[row][col].setText(items.get(listCounter++));
+		for (int col = pos_x; col <= (pos_x + 3); col++) {
+			for (int row = pos_y; row <= (pos_y + 3); row++) {
+				Color current = tiles[col][row].getBackground();
+				Color avg = averageColors(current, Color.BLUE);
+				tiles[col][row].setBackground(avg);
 			}
 		}
 

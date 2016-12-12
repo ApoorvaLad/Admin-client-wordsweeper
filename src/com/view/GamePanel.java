@@ -47,11 +47,10 @@ public class GamePanel extends JPanel {
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				list.getSelectedValue();
-				
-				Game game = new Game(); 
-				new GameController(Application.instance)
-						.process(game.getGameDetails().get(list.getSelectedValue().toString()));
 
+				GameController gc = new GameController(Application.instance);
+				String gameID = Application.getInstance().gameIndexMapping.get(list.getSelectedIndex());
+				gc.process(gameID);
 			}
 		});
 		boardPanel = new BoardPanel();
@@ -61,5 +60,8 @@ public class GamePanel extends JPanel {
 
 	public BoardPanel getBoardPanel() {
 		return boardPanel;
+	}
+	public void resetBoardPanel(){
+		this.boardPanel.getModel().removeAllElements();
 	}
 }

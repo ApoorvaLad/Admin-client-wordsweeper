@@ -50,13 +50,4 @@ public class Game {
 		this.score = score;
 	}
 
-	/*public ArrayList<Player> getPlayers() {
-		return players;
-	}
-	
-	public void setPlayer(ArrayList<Player> players){
-		this.players=players;
-		
-	}*/
-
 }

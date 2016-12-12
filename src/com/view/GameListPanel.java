@@ -43,11 +43,12 @@ public class GameListPanel extends JPanel {
 		JButton showGame = new JButton("Show Game");
 		showGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				list.getSelectedValue();
+				String s = list.getSelectedValue().toString();
 				
-				Game game = new Game(); 
-				new GameController(Application.instance)
-						.process(game.getGameDetails().get(list.getSelectedValue().toString()));
+
+				GameController gc = new GameController(Application.instance);
+				String gameID = Application.getInstance().gameIndexMapping.get(list.getSelectedIndex());
+				gc.process(gameID);
 
 			}
 		});

@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 
 import com.admin.ServerAccess;
 
+import java.util.HashMap;
+
 
 public class Application extends JFrame {
 
@@ -11,7 +13,7 @@ public class Application extends JFrame {
 	AdminPanel adminPanel;
 	
 	static Application instance = null;
-	
+	public HashMap<Integer, String> gameIndexMapping = new HashMap<Integer, String>();
 
 	public static Application getInstance() {  
 		if (instance == null) {

@@ -34,15 +34,18 @@ public class GameListResponseController extends ControllerChain {
 		Node listResponse = response.contents.getFirstChild();
 		Game game = new Game();
 		NodeList list = listResponse.getChildNodes();
-		HashMap<String, String> gameDetails = game.getGameDetails();
+
+		// Reset
+		Application.getInstance().gameIndexMapping.clear();
+
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
 			String gameID = n.getAttributes().getNamedItem("gameId").getNodeValue();
 			
 			game.setGameID(gameID);
-			gameDetails.put("Game " + (i + 1),gameID);
+			Application.getInstance().gameIndexMapping.put(i,gameID);
 			model.addGame(game);
-			application.getAdminPanel().getGameListPanel().getModel().addElement("Game " + (i + 1));
+			application.getAdminPanel().getGameListPanel().getModel().addElement("Game " + gameID);
 		}
 		return true;
 	}
