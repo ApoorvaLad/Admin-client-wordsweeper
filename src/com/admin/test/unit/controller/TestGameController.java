@@ -1,6 +1,10 @@
 package com.admin.test.unit.controller;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +22,7 @@ import com.admin.scorpio.view.Application;
  * @author Apoorva
  *
  */
-public class TestGamePanelController {
+public class TestGameController {
 	Model model = new Model();
 	Application client = new Application();
 	MockServerAccess mockServer = new MockServerAccess("localhost");
@@ -37,13 +41,18 @@ public class TestGamePanelController {
 	@Test
 	public void testShowGameResponseController() {
 		Game game = new Game();
-		String id = null;
+		String id = "1";
 		if (game.getGameID() != null) {
 			id = game.getGameID();
 		}
 
 		GameController controller = new GameController(client);
 		controller.process(id);
+		ArrayList<Message> reqs = mockServer.getAndClearMessages();
+		Message r = reqs.get(0);
+		assertEquals("showGameStateRequest", r.contents.getFirstChild().getLocalName());
+		assertTrue(reqs.size() == 1);
+		assertEquals(id, r.contents.getFirstChild().getAttributes().getNamedItem("gameId").getNodeValue());
 
 	}
 

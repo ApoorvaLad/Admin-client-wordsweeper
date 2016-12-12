@@ -51,6 +51,8 @@ public class TestGameListController {
 		assertTrue(reqs.size() == 1);
 		Message r = reqs.get(0);
 		assertEquals("listGamesRequest", r.contents.getFirstChild().getLocalName());
+		assertTrue(reqs.size() == 1);
+		
 		
 	}
 	
