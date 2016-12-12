@@ -5,7 +5,7 @@ import java.util.Hashtable;
 
 import com.admin.IMessageHandler;
 import com.admin.ServerAccess;
-import com.admin.controller.IAdminController;
+import com.admin.scorpio.controller.IAdminController;
 import com.admin.xml.Message;
 
 public class MockServerAccess extends ServerAccess {

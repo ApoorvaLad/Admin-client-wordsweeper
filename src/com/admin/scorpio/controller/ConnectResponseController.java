@@ -1,8 +1,8 @@
-package com.admin.controller;
+package com.admin.scorpio.controller;
 
 import com.admin.xml.Message;
-import com.model.Model;
-import com.view.Application;
+import com.admin.scorpio.model.Model;
+import com.admin.scorpio.view.Application;
 
 /**
  * Connect Response Controller

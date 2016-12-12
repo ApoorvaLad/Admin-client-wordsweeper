@@ -1,4 +1,4 @@
-package com.view;
+package com.admin.scorpio.view;
 
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -8,9 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
-import com.admin.controller.GameListController;
+import com.admin.scorpio.controller.GameListController;
 
 /**
  * The Outer panel

@@ -1,6 +1,5 @@
-package com.view;
+package com.admin.scorpio.view;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,8 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.admin.controller.GameController;
-import com.model.Game;
+import com.admin.scorpio.controller.GameController;
 
 /**
  * 

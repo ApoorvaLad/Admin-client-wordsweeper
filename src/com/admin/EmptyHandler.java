@@ -1,6 +1,6 @@
 package com.admin;
 
-import com.admin.controller.ControllerChain;
+import com.admin.scorpio.controller.ControllerChain;
 import com.admin.xml.Message;
 
 /**

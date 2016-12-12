@@ -1,4 +1,4 @@
-package com.model.test;
+package com.admin.scorpio.model.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.model.Game;
-import com.model.Model;
+import com.admin.scorpio.model.Game;
+import com.admin.scorpio.model.Model;
 /**
  * Test Case for Model
  * @author Rishitha

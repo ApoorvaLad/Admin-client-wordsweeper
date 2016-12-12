@@ -1,4 +1,4 @@
-package com.view;
+package com.admin.scorpio.view;
 
 import javax.swing.JFrame;
 

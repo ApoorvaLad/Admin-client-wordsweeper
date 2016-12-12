@@ -1,4 +1,4 @@
-package com.model;
+package com.admin.scorpio.model;
 
 import java.util.HashMap;
 

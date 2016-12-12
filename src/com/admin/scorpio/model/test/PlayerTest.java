@@ -1,10 +1,10 @@
-package com.model.test;
+package com.admin.scorpio.model.test;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.model.Player;
+import com.admin.scorpio.model.Player;
 /**
  * Test Case for Player
  * @author Rishitha

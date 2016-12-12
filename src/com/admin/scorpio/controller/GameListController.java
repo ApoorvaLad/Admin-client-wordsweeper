@@ -1,10 +1,10 @@
-package com.admin.controller;
+package com.admin.scorpio.controller;
 
 import static org.junit.Assert.assertTrue;
 
 import com.admin.xml.Message;
-import com.util.XMLUtil;
-import com.view.Application;
+import com.admin.test.util.XMLUtil;
+import com.admin.scorpio.view.Application;
 
 /**
  * Controller to request a list of active games

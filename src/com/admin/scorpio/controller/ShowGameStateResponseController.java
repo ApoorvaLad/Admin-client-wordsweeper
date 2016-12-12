@@ -1,20 +1,18 @@
-package com.admin.controller;
+package com.admin.scorpio.controller;
 
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.admin.xml.Message;
-import com.model.Game;
-import com.model.Model;
-import com.view.Application;
-import com.view.GamePanel;
+import com.admin.scorpio.model.Model;
+import com.admin.scorpio.view.Application;
+import com.admin.scorpio.view.GamePanel;
 
 /**
  * 

@@ -5,12 +5,12 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.admin.controller.GameController;
+import com.admin.scorpio.controller.GameController;
 import com.admin.test.server.MockServerAccess;
 import com.admin.xml.Message;
-import com.model.Game;
-import com.model.Model;
-import com.view.Application;
+import com.admin.scorpio.model.Game;
+import com.admin.scorpio.model.Model;
+import com.admin.scorpio.view.Application;
 
 /**
  * This tests the Game Panel Controller

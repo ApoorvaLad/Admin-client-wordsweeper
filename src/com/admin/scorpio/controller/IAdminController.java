@@ -1,4 +1,4 @@
-package com.admin.controller;
+package com.admin.scorpio.controller;
 
 import com.admin.xml.Message;
 

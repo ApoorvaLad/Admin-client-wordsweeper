@@ -1,4 +1,4 @@
-package com.model.test;
+package com.admin.scorpio.model.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import com.model.Game;
+import com.admin.scorpio.model.Game;
 /**
  * Test Case for Game
  * @author Rishitha

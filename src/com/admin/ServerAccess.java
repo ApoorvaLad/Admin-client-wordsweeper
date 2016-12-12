@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Hashtable;
 
-import com.admin.controller.IAdminController;
+import com.admin.scorpio.controller.IAdminController;
 import com.admin.xml.Message;
 import com.admin.xml.Parser;
 

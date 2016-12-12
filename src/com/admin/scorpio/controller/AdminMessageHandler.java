@@ -1,9 +1,9 @@
-package com.admin.controller;
+package com.admin.scorpio.controller;
 
 import com.admin.EmptyHandler;
 import com.admin.IMessageHandler;
 import com.admin.xml.Message;
-import com.view.Application;
+import com.admin.scorpio.view.Application;
 
 /**
  * Handles the chain of responsibility for response handling

@@ -1,13 +1,13 @@
 package com.admin;
 
 
-import com.admin.controller.AdminMessageHandler;
-import com.admin.controller.ConnectResponseController;
-import com.admin.controller.GameListResponseController;
-import com.admin.controller.ShowGameStateResponseController;
+import com.admin.scorpio.controller.AdminMessageHandler;
+import com.admin.scorpio.controller.ConnectResponseController;
+import com.admin.scorpio.controller.GameListResponseController;
+import com.admin.scorpio.controller.ShowGameStateResponseController;
 import com.admin.xml.Message;
-import com.model.Model;
-import com.view.Application;
+import com.admin.scorpio.model.Model;
+import com.admin.scorpio.view.Application;
 
 /** Code to launch the Admin */
 public class AdminLauncher {

@@ -1,14 +1,8 @@
-package com.admin.controller;
-
-import java.awt.Button;
-
-import javax.swing.JButton;
+package com.admin.scorpio.controller;
 
 import com.admin.xml.Message;
-import com.model.Model;
-import com.util.XMLUtil;
-import com.view.Application;
-import com.view.BoardPanel;
+import com.admin.test.util.XMLUtil;
+import com.admin.scorpio.view.Application;
 
 /**
  * Controller for requesting the state of a particular game

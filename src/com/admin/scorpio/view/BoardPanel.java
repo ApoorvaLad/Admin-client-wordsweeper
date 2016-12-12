@@ -1,11 +1,10 @@
-package com.view;
+package com.admin.scorpio.view;
 
 import java.awt.GridLayout;
 import java.awt.Scrollbar;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
