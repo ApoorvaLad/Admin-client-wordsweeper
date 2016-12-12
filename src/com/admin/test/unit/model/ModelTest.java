@@ -1,4 +1,4 @@
-package com.admin.scorpio.model.test;
+package com.admin.test.unit.model;
 
 import static org.junit.Assert.assertEquals;
 

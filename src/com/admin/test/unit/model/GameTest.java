@@ -1,4 +1,4 @@
-package com.admin.scorpio.model.test;
+package com.admin.test.unit.model;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,15 +16,6 @@ import com.admin.scorpio.model.Game;
 
 public class GameTest {
 	
-	/**Test to verify the game details*/
-	@Test
-	public void testSetGameDetails() {
-	    Game g = new Game();
-	    g.setGameDetails("game1", "1");
-	    HashMap<String, String> result = new HashMap<>();
-	    result=g.getGameDetails();
-	    assertEquals(300,result);
-	}
 	@Test
 	public void testGetGameDetails() {
 	    Game g = new Game();
