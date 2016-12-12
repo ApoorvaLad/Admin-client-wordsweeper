@@ -1,5 +1,7 @@
 package com.admin.controller;
 
+import static org.junit.Assert.assertTrue;
+
 import com.admin.xml.Message;
 import com.util.XMLUtil;
 import com.view.Application;
@@ -27,6 +29,7 @@ public class GameListController implements IAdminController {
 		Message m = new Message(xmlString);
 
 		application.getServerAccess().sendRequest(m);
+		
 	}
 
 	@Override

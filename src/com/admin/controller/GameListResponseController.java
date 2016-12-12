@@ -1,6 +1,8 @@
 package com.admin.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -12,6 +14,7 @@ import com.view.Application;
 
 /**
  * Controller to handle and display the list of Active games
+ * 
  * @author Apoorva
  *
  */
@@ -32,20 +35,28 @@ public class GameListResponseController extends ControllerChain {
 			return next.process(response);
 		}
 		Node listResponse = response.contents.getFirstChild();
-		Game game = new Game();
-		NodeList list = listResponse.getChildNodes();
 
+		NodeList list = listResponse.getChildNodes();
+		List<Game> games = new ArrayList<>();
+		List<String> availableIds = new ArrayList<>();
+
+		for (Game g : model.getGames()) {
+			availableIds.add(g.getGameID());
+		}
 		// Reset
 		Application.getInstance().gameIndexMapping.clear();
 
 		for (int i = 0; i < list.getLength(); i++) {
 			Node n = list.item(i);
 			String gameID = n.getAttributes().getNamedItem("gameId").getNodeValue();
-			
-			game.setGameID(gameID);
-			Application.getInstance().gameIndexMapping.put(i,gameID);
-			model.addGame(game);
-			application.getAdminPanel().getGameListPanel().getModel().addElement("Game " + gameID);
+			Application.getInstance().gameIndexMapping.put(i, gameID);
+			if (!availableIds.contains(gameID)) {
+				Game game = new Game();
+				game.setGameID(gameID);
+				model.addGame(game);
+				application.getAdminPanel().getGameListPanel().getModel().addElement("Game " + gameID);
+			}
+
 		}
 		return true;
 	}

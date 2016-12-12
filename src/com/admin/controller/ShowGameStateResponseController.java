@@ -59,7 +59,7 @@ public class ShowGameStateResponseController extends ControllerChain {
 				tiles[col][row] = new JPanel();
 				tiles[col][row].setBackground(Color.WHITE);
 				//tiles[col][row].setBorder(BorderFactory.createLineBorder(Color.black));
-				tiles[col][row].setPreferredSize( new Dimension(50, 50) );
+				tiles[col][row].setPreferredSize( new Dimension(50, 20) );
 				gamePanel.getBoardPanel().getPanel().add(tiles[col][row]);
 			}
 		}

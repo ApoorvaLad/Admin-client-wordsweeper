@@ -24,7 +24,7 @@ public class Application extends JFrame {
 	}
 	
 	
-	Application() {
+	public Application() {
 		super();
 		setTitle("Game Manager");
 		setSize(800, 550);
