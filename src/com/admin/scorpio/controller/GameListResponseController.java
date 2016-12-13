@@ -38,8 +38,9 @@ public class GameListResponseController extends ControllerChain {
 			return next.process(response);
 		}
 		Node listResponse = response.contents.getFirstChild();
-
+		int prevListLength =0;
 		NodeList list = listResponse.getChildNodes();
+		
 		List<Game> games = new ArrayList<>();
 		List<String> availableIds = new ArrayList<>();
 
@@ -50,19 +51,26 @@ public class GameListResponseController extends ControllerChain {
 		Application.getInstance().gameIndexMapping.clear();
 		model.clearGames();
 		application.getAdminPanel().getGameListPanel().getModel().removeAllElements();
-
+	
+			
 		for (int i = 0; i < list.getLength(); i++) {
+			
 			Node n = list.item(i);
 			String gameID = n.getAttributes().getNamedItem("gameId").getNodeValue();
 			Application.getInstance().gameIndexMapping.put(i, gameID);
-			if (!availableIds.contains(gameID)) {
+			if(list.getLength() > prevListLength) {
 				Game game = new Game();
 				game.setGameID(gameID);
 				model.addGame(game);
 				application.getAdminPanel().getGameListPanel().getModel().addElement("Game " + gameID);
 			}
+			
+			/*if (!availableIds.contains(gameID)) {
+				
+			}*/
 
 		}
+		prevListLength = list.getLength();
 		return true;
 	}
 
