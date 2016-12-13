@@ -1,18 +1,23 @@
 package com.admin.scorpio.controller;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.admin.xml.Message;
 import com.admin.scorpio.model.Model;
 import com.admin.scorpio.view.Application;
 import com.admin.scorpio.view.GamePanel;
+import com.admin.xml.Message;
 
 /**
  * 
@@ -25,6 +30,7 @@ public class ShowGameStateResponseController extends ControllerChain {
 
 	Application app;
 	Model model;
+	HashMap<String, Color> playerDetails = new HashMap<>();
 
 	public ShowGameStateResponseController(Application app, Model model) {
 		this.app = app;
@@ -49,6 +55,7 @@ public class ShowGameStateResponseController extends ControllerChain {
 		Node listResponse = response.contents.getFirstChild();
 		NodeList list = listResponse.getChildNodes();
 		int columncount = Integer.parseInt(listResponse.getAttributes().getNamedItem("size").getNodeValue());
+		String gameId = listResponse.getAttributes().getNamedItem("gameId").getNodeValue();
 		int rowCount = columncount;
 
 		gamePanel.getBoardPanel().addComponents(columncount, rowCount);
@@ -79,13 +86,23 @@ public class ShowGameStateResponseController extends ControllerChain {
 
 		// Shade cells for each player board
 		for (int i = 0; i < list.getLength(); i++) {
+
 			Node n = list.item(i);
-			JLabel e = new JLabel("Player: " + n.getAttributes().getNamedItem("name").getNodeValue() + "      Score: "
+
+			String playerName = n.getAttributes().getNamedItem("name").getNodeValue();
+		
+
+			String color = "#" + createColorForPlayer(playerName);
+			Color newColor = new Color(Integer.valueOf(color.substring(1, 3), 16),
+					Integer.valueOf(color.substring(3, 5), 16), Integer.valueOf(color.substring(5, 7), 16));
+			createPlayerBoard(n, tiles,newColor);
+
+
+			JLabel e = new JLabel("<html> <font color=" + color + ">  Player: "
+					+ n.getAttributes().getNamedItem("name").getNodeValue() + "      Score: "
 					+ n.getAttributes().getNamedItem("score").getNodeValue());
 
 			gamePanel.getBoardPanel().getModel().addElement(e.getText());
-
-			createPlayerBoard(n, tiles);
 
 		}
 
@@ -101,6 +118,28 @@ public class ShowGameStateResponseController extends ControllerChain {
 		gamePanel.setVisible(true);
 
 		return true;
+	}
+
+	// Create separate color for each player
+	private String createColorForPlayer(String playerName) {
+	
+		StringBuffer sb = new StringBuffer();
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("MD5");
+			md.update(playerName.getBytes());
+			byte[] digest = md.digest();
+
+			for (byte b1 : digest) {
+				sb.append(String.format("%02x", b1 & 0xff));
+			}
+			System.out.println(sb);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return sb.substring(0, 15);
 	}
 
 	private Color averageColors(Color c1, Color c2) {
@@ -120,9 +159,11 @@ public class ShowGameStateResponseController extends ControllerChain {
 		return new Color(mr, mg, mb);
 	}
 
-	private void createPlayerBoard(Node n, JPanel[][] tiles) {
+	private Color createPlayerBoard(Node n, JPanel[][] tiles, Color color) {
 		// Node n = list.item(0);
 		int listCounter = 0;
+		Color avg = null;
+		Color current = null;
 		String position = n.getAttributes().getNamedItem("position").getNodeValue();
 		List<String> positions = Arrays.asList(position.split("\\s*,\\s*"));
 		String content = n.getAttributes().getNamedItem("board").getNodeValue();
@@ -131,11 +172,13 @@ public class ShowGameStateResponseController extends ControllerChain {
 		List<String> items = Arrays.asList(content.split("\\s*,\\s*"));
 		for (int col = pos_x; col <= (pos_x + 3); col++) {
 			for (int row = pos_y; row <= (pos_y + 3); row++) {
-				Color current = tiles[col][row].getBackground();
-				Color avg = averageColors(current, Color.BLUE);
+				// tiles[col][row].setBackground(color);
+				current = tiles[col][row].getBackground();
+				avg = averageColors(current, color);
 				tiles[col][row].setBackground(avg);
 			}
 		}
+		return avg;
 
 	}
 
