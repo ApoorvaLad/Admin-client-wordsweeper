@@ -17,8 +17,8 @@ import com.admin.scorpio.model.Model;
 import com.admin.scorpio.view.Application;
 
 /**
- * 
- * @author Apoorva This class is used to test the Game List Controller
+ * This class is used to test the Game List Controller
+ * @author Apoorva 
  */
 public class TestGameListController {
 

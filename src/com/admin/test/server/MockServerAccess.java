@@ -7,7 +7,10 @@ import com.admin.IMessageHandler;
 import com.admin.ServerAccess;
 import com.admin.scorpio.controller.IAdminController;
 import com.admin.xml.Message;
-
+/**
+ * This class is a mock server to test server access.
+ * @author Apoorva 
+ */
 public class MockServerAccess extends ServerAccess {
 	/** Sent messages. */
 	ArrayList<Message> sentMessages = new ArrayList<Message>();

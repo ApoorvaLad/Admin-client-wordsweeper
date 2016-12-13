@@ -3,7 +3,7 @@ package com.admin.xml;
 import java.io.*;
 
 /**
- * 
+ * Parser for XML requests and reponses.
  * @author Apoorva
  *
  */

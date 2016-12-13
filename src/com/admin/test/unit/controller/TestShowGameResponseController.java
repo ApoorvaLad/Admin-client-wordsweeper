@@ -1,6 +1,7 @@
 package com.admin.test.unit.controller;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
@@ -13,6 +14,10 @@ import com.admin.scorpio.view.Application;
 import com.admin.test.server.MockServerAccess;
 import com.admin.xml.Message;
 
+/**
+ * This class is used to test the Show Game Response Controller
+ * @author Apoorva 
+ */
 public class TestShowGameResponseController {
 
 	Model model = new Model();
