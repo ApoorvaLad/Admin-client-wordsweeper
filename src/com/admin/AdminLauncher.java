@@ -12,7 +12,7 @@ import com.admin.scorpio.view.Application;
 /** Code to launch the Admin */
 public class AdminLauncher {
 
-	public static final String serverHost = "localhost";
+	public static final String serverHost = "rambo.wpi.edu";
 
 	public static void main(String[] args) {
 		// Register the protocol
